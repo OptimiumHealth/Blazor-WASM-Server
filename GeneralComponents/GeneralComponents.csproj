@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <LangVersion>7.3</LangVersion>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GeneralComponents</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
+
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <Configurations>Debug_CSE;Debug_SSE;Release_CSE;Release_SSE</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_CSE|AnyCPU'">
+    <DefineConstants>ClientSideExecution;UseLocalData;TRACE;DEBUG;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_SSE|AnyCPU'">
+    <DefineConstants>ServerSideExecution;UseLocalData;TRACE;DEBUG;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_CSE|AnyCPU'">
+    <DefineConstants>ClientSideExecution;UseLocalData;RELEASE;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_SSE|AnyCPU'">
+    <DefineConstants>ServerSideExecution;UseLocalData;RELEASE;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\GeneralComponents.Constants.scss" />
+    <Content Remove="wwwroot\GeneralComponents.Styles.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\GeneralComponents.Constants.scss" />
+    <EmbeddedResource Include="wwwroot\GeneralComponents.Styles.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0-preview8.19405.7" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0-preview8.19405.4" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Optimiser.SystemFramework</RootNamespace>
+    <Configurations>Debug_CSE;Debug_SSE;Release_CSE;Release_SSE</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_CSE|AnyCPU'">
+    <DefineConstants>ClientSideExecution;UseLocalData;TRACE;DEBUG;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_SSE|AnyCPU'">
+    <DefineConstants>ServerSideExecution;UseLocalData;TRACE;DEBUG;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_CSE|AnyCPU'">
+    <DefineConstants>ClientSideExecution;UseLocalData;RELEASE;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_SSE|AnyCPU'">
+    <DefineConstants>ServerSideExecution;UseLocalData;RELEASE;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+</Project>
