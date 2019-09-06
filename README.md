@@ -5,9 +5,11 @@ Blazor as part of ASP.Net Core 3.0 will be shipping in approximately a month. As
 
 ## Prerequisites
 
-Visual Studio 2019 16.3.0 Preview 2.0 and ASP.Net Core 3.0 Preview 8.
+Visual Studio 2019 16.3.0 Preview 3.0 and ASP.Net Core 3.0 Preview 9.
 
-The project will be updated to Preview 9 when it is released (with a likely update to VS also).
+The two files in the solution items that are the nuget package for Logging 3.0.0-P9 need to be placed in a local nuget directory.
+
+The project will be updated to DNC 3.0.0 when it is released (with a likely update to VS also).
 
 
 

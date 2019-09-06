@@ -7,6 +7,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{514A3475-6588-450E-BF65-1E96D4BFA840}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Blazor.Extensions.Logging.3.0.0-preview9-1.nupkg = Blazor.Extensions.Logging.3.0.0-preview9-1.nupkg
+		Blazor.Extensions.Logging.3.0.0-preview9-1.symbols.nupkg = Blazor.Extensions.Logging.3.0.0-preview9-1.symbols.nupkg
 		README.md = README.md
 		SuperClean.cmd = SuperClean.cmd
 	EndProjectSection
