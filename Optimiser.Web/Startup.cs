@@ -136,8 +136,8 @@ namespace Optimiser.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
-                endpoints.MapBlazorHub<GeneralComponents.App>("app");
-                endpoints.MapFallbackToFile("index_sse.html");
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/index_sse");
             });
 #endif
 

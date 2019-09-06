@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.RenderTree;
+using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 
@@ -147,7 +148,7 @@ namespace GeneralComponents.GCNavMenu
     //  We need a derivative of the UI event change parameters class. We pass the
     //  assigned menu item name.
     //
-    public class GCNavMenuSelection : UIEventArgs
+    public class GCNavMenuSelection : EventArgs
     {
         public string SelectedItemId { get; set; }
     };
@@ -198,7 +199,7 @@ namespace GeneralComponents.GCNavMenu
 
             builder.AddAttribute
             (
-                rendSeq++, "onclick", EventCallback.Factory.Create < UIMouseEventArgs >(this, e => OnClick(e))
+                rendSeq++, "onclick", EventCallback.Factory.Create < MouseEventArgs >(this, e => OnClick(e))
             );
             builder.AddContent(rendSeq++, ItemText);
             builder.CloseElement();
@@ -206,7 +207,7 @@ namespace GeneralComponents.GCNavMenu
 
 
         // We just pass along our configured item name, so we don't need any parameters
-        private bool OnClick(UIMouseEventArgs e)
+        private bool OnClick(MouseEventArgs e)
         {
             OnSelect.InvokeAsync(new GCNavMenuSelection { SelectedItemId = ItemId });
             return false;

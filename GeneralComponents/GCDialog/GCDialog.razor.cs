@@ -54,9 +54,9 @@ namespace GeneralComponents.GCDialog
         protected GCModal.GCModal GCModalRef;
 
         // We ask our modal comp to invoke modal mode at this point
-        protected override void OnAfterRender()
+        protected override void OnAfterRender(bool NavigationManager)
         {
-            base.OnAfterRender();
+            base.OnAfterRender(NavigationManager);
 
             // Tell the modal component to invoke modal mode
             GCModalRef.InvokeModal(DialogPopupId);

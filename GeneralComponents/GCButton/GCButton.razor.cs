@@ -26,7 +26,7 @@ namespace GeneralComponents.GCButton
         [Parameter] public EventCallback<GCButtonRes> OnClickAction { get; set; }
     }
 
-    public class GCButtonRes : UIEventArgs
+    public class GCButtonRes : EventArgs
     {
         public GCButtonRes(string id, object data)
         {

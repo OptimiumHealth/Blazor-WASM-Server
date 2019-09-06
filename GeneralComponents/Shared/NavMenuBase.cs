@@ -6,7 +6,7 @@ namespace GeneralComponents.Shared
 {
     public class NavMenuBase: ComponentBase
     {
-        [Inject] IUriHelper UriHelper { get; set; }
+        [Inject] NavigationManager NavigationHelper { get; set; }
 
         protected List<GCNavMenuItemInfo> ItemList = new List<GCNavMenuItemInfo>();
 
@@ -31,7 +31,7 @@ namespace GeneralComponents.Shared
         public void OnSelect(GCNavMenuSelection ev)
         {
             // Invoke a new view based on selection
-            UriHelper.NavigateTo("/" + ev.SelectedItemId);
+            NavigationHelper.NavigateTo("/" + ev.SelectedItemId);
         }
 
     }
