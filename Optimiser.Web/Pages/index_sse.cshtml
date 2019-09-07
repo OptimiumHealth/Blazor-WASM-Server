@@ -16,10 +16,10 @@
 <body>
     <app>
         <!-- SSE -->
+        <app>
+            @(await Html.RenderComponentAsync<App>(RenderMode.Server))
+        </app>
         <script src="_content/GeneralComponents/GeneralComponents.DOMHelpers.js"></script>
         <script src="_framework/blazor.server.js"></script>
-        <app>
-            @(await Html.RenderComponentAsync<App>(RenderMode.ServerPrerendered))
-        </app>
 </body>
 </html>
