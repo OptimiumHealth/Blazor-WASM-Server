@@ -1,15 +1,11 @@
 # Blazor: Easily switch between client side and server side execution
 
 
-Blazor as part of ASP.Net Core 3.0 will be shipping in approximately a month. As a generally available release Blazor is supported with server side execution. Even though client side execution is possible, it will remain in a preview state for at least the remainder of the year. Even if the intent for your project is to target server side there are some useful aspects to host your project in wasm on the client. Notably, the ability to use the browser development tools to understand just what your carefully crafted css is actually doing is priceless. If you are planning a full wasm client deployment it is still useful to switch to server side for debug purposes.
+Blazor as part of ASP.Net Core 3.0 is shipping. As a generally available release Blazor is supported with server side execution. Even though client side execution is possible, it will remain in a preview state until Q2 2020. Even if the intent for your project is to target server side there are some useful aspects to host your project in wasm on the client. Notably, the ability to use the browser development tools to understand just what your carefully crafted css is actually doing is priceless. If you are planning a full wasm client deployment it is still useful to switch to server side for debug purposes.
 
 ## Prerequisites
 
-Visual Studio 2019 16.3.0 Preview 3.0 and ASP.Net Core 3.0 Preview 9.
-
-The two files in the solution items that are the nuget package for Logging 3.0.0-P9 need to be placed in a local nuget directory.
-
-The project will be updated to DNC 3.0.0 when it is released (with a likely update to VS also).
+Visual Studio 2019 16.3.0 (or 16.4.0 Preview 1.0) and ASP.Net Core 3.0.0 GA.
 
 
 
@@ -32,7 +28,7 @@ The names of the projects may seem a bit odd; Just understand that this project 
 
 
 
-This project is a Net Standard 2.0 Razor Class Library which implemen the UI and backing logic. GeneralComponents contains the usual Blazor suspects of MainLayout.razor, NavMenu.razor, and the _Imports.razor files as well as other useful components. This project does not change with the server or client side execution.
+This project is a Net Standard 2.0 Razor Class Library which implements the UI and backing logic. GeneralComponents contains the usual Blazor suspects of MainLayout.razor, NavMenu.razor, and the _Imports.razor files as well as other useful components. This project does not change with the server or client side execution.
 
 
 
