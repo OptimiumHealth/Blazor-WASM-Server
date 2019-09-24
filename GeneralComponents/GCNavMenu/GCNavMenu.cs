@@ -6,15 +6,19 @@ using System.Collections.Generic;
 
 
 //
-//  3028-20-28  ADR
+//  2018-10-18  ADR
 //              Implements two different components. One is a navigation bar, and the other
 //              is for the navigation links inside of it.
 //
-//  2018-19-27  MS
+//  2018-10-28  MS
 //              Added functionality to allow hiding/showing of menu items
 //
+//  2019-09-24  MS
+//              Repair issue caused by multiple settingss of parameters that occurred in
+//              ASP.Net Core 3.0.0 Preview9
+//
 
-namespace GeneralComponents.GCNavMenu
+namespace GeneralComponents
 {
     public class GCNavMenu : ComponentBase
     {
@@ -29,13 +33,27 @@ namespace GeneralComponents.GCNavMenu
         [Parameter] public EventCallback<GCNavMenuSelection> OnSelect { get; set; }
         [Parameter] public string ActiveId { get; set; }
 
+        private string _ActiveId { get; set; }
+        private bool _IsFirstParameterSet = true;
+
         protected override void OnInitialized()
         {
             base.OnInitialized();
 
             // If no initially active element provided , then select the 0th one if we have one
-            if ((ActiveId == "") && (MenuItems.Count != 0))
-                ActiveId = MenuItems[0].pItemId;
+            if ((_ActiveId == "") && (MenuItems.Count != 0))
+                _ActiveId = MenuItems[0].pItemId;
+        }
+
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+
+            if (_IsFirstParameterSet)
+            {
+                _ActiveId = ActiveId;
+                _IsFirstParameterSet = false;
+            }
         }
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
@@ -78,7 +96,7 @@ namespace GeneralComponents.GCNavMenu
             {
                 if (navMenuItemInfo.pItemIsVisible)
                 {
-                    builder.OpenComponent(rendSeq++, typeof(OptiNavMenuItem));
+                    builder.OpenComponent(rendSeq++, typeof(GCNavMenuItem));
                     builder.AddAttribute(rendSeq++, "ItemId", navMenuItemInfo.pItemId);
                     builder.AddAttribute(rendSeq++, "ItemText", navMenuItemInfo.pItemText);
                     builder.AddAttribute
@@ -87,7 +105,7 @@ namespace GeneralComponents.GCNavMenu
                     );
 
                     // For the active one set the is active flag
-                    if (navMenuItemInfo.pItemId == ActiveId)
+                    if (navMenuItemInfo.pItemId == _ActiveId)
                         builder.AddAttribute(rendSeq++, "IsActive", true);
                     else
                         builder.AddAttribute(rendSeq++, "IsActive", false);
@@ -123,7 +141,7 @@ namespace GeneralComponents.GCNavMenu
 
         public void SetActiveItem(string itemId)
         {
-            ActiveId = itemId;
+            _ActiveId = itemId;
         }
 
         public void Refresh()
@@ -136,7 +154,7 @@ namespace GeneralComponents.GCNavMenu
         private bool OnClick(GCNavMenuSelection ev)
         {
             // Remember the active one's id and re-render
-            ActiveId = ev.SelectedItemId;
+            _ActiveId = ev.SelectedItemId;
             StateHasChanged();
 
             // And pass it on our consumers
@@ -169,7 +187,7 @@ namespace GeneralComponents.GCNavMenu
     };
 
 
-    public class OptiNavMenuItem : ComponentBase
+    public class GCNavMenuItem : ComponentBase
     {
         // We get all of this stuff as parameters from our parent menu class when he generates us.
         [Parameter] public bool IsActive { get; set; } = false;

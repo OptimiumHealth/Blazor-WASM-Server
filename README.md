@@ -28,7 +28,7 @@ The names of the projects may seem a bit odd; Just understand that this project 
 
 
 
-This project is a Net Standard 2.0 Razor Class Library which implements the UI and backing logic. GeneralComponents contains the usual Blazor suspects of MainLayout.razor, NavMenu.razor, and the _Imports.razor files as well as other useful components. This project does not change with the server or client side execution.
+This project is a Net Standard 2.0 Razor Class Library which implements the UI and backing logic. GeneralComponents contains the usual Blazor suspects of MainLayout.razor, NavMenu.razor, and the _Imports.razor files as well as a custom navigation  component. This project does not change with the server or client side execution.
 
 
 
