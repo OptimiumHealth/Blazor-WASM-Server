@@ -1,11 +1,11 @@
 # Blazor: Easily switch between client side and server side execution
 
 
-Blazor as part of ASP.Net Core 3.0 is shipping. As a generally available release Blazor is supported with server side execution. Even though client side execution is possible, it will remain in a preview state until Q2 2020. Even if the intent for your project is to target server side there are some useful aspects to host your project in wasm on the client. Notably, the ability to use the browser development tools to understand just what your carefully crafted css is actually doing is priceless. If you are planning a full wasm client deployment it is still useful to switch to server side for debug purposes.
+Blazor as part of ASP.Net Core 3.0 is shipping. As a generally available release Blazor is supported with server side execution. Even though client side execution is possible, it will remain in a preview state until Q2 2020. Even if the intent for your project is to target server side there are some useful aspects of hosting your project in wasm on the client. Notably, the ability to use the browser development tools to understand just what your carefully crafted css is actually doing is priceless. If you are planning a full wasm client deployment it is still useful to switch to server side for debug purposes.
 
 ## Prerequisites
 
-Visual Studio 2019 16.3.0 (or 16.4.0 Preview 1.0) and ASP.Net Core 3.0.0 GA.
+Visual Studio 2019 16.4.0 Preview 3.0 and ASP.Net Core 3.1.0-Preview2.
 
 
 
