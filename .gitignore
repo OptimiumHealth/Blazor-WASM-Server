@@ -227,12 +227,6 @@ HeatService8.wxs
 !**/UnityPM/App.config
 !**/NG-Blazor/Optimiser.Web/Web.config
 
-#Generated CSS files
-**/GeneralComponents/wwwroot/*.css
-**/GeneralComponents/wwwroot/css/*.css
-**/Optimiser.Blazor/wwwroot/css/*.css
-**/Optimiser.Web/wwwroot/css/*.css
-
 #Documents & Reports
 **/Optimiser.2012.Web/Documents/
 !**/Optimiser.2012.Web/Documents/Assets/*.html

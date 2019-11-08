@@ -17,7 +17,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using System.Linq;
-using GeneralComponents.SystemFramework;
 
 namespace Optimiser.Web
 {
@@ -31,14 +30,8 @@ namespace Optimiser.Web
             logger.Debug("");
 #if ClientSideExecution
             logger.Debug("Beginning Startup.ConfigureServices() in CSE mode");
-
-            // Initialize defaults (This seems odd, but we need the controller access URL's defined)
-            ApplicationConfiguration.pInstance.InitializeSSE("", "");
 #else
             logger.Debug("Beginning Startup.ConfigureServices() in SSE mode");
-
-            // Initialize defaults
-            ApplicationConfiguration.pInstance.InitializeSSE("", "");
 
             logger.Debug("Adding AddRazorPages...");
             services.AddRazorPages();
@@ -47,18 +40,10 @@ namespace Optimiser.Web
             logger.Debug("Adding AddServerSideBlazor...");
             services.AddServerSideBlazor();
 
-            logger.Debug("Adding HttpClient...");
-            services.AddScoped<HttpClient>(s =>
-            {
-                var client = new HttpClient();
-                client.BaseAddress = new System.Uri(ApplicationConfiguration.pInstance.pURI_Rest_PersistentStorageService);
-                return client;
-            });
-
 #endif
 
             logger.Debug("Adding Mvc...");
-            services.AddMvc().AddNewtonsoftJson();
+            services.AddMvc();
 
             logger.Debug("Adding ResponseCompression...");
             services.AddResponseCompression(opts =>

@@ -6,7 +6,6 @@
 //
 
 using Blazor.Extensions.Logging;
-using GeneralComponents.SystemFramework;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,9 +15,6 @@ namespace Optimiser.Blazor
     {
         public void ConfigureServices(IServiceCollection services)
         {
-             // Initialize defaults
-            ApplicationConfiguration.pInstance.InitializeCSE("", "");
-
            services.AddLogging(builder => builder
                 .AddBrowserConsole() // Add Blazor.Extensions.Logging.BrowserConsoleLogger
             );

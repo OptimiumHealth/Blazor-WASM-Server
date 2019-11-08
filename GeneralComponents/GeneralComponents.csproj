@@ -29,17 +29,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\GeneralComponents.Constants.scss" />
-    <Content Remove="wwwroot\GeneralComponents.Styles.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="wwwroot\GeneralComponents.Constants.scss" />
-    <EmbeddedResource Include="wwwroot\GeneralComponents.Styles.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.0-preview2.19528.8" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.0-preview2.19525.4" />
   </ItemGroup>

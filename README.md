@@ -5,7 +5,7 @@ Blazor as part of ASP.Net Core 3.0 is shipping. As a generally available release
 
 ## Prerequisites
 
-Visual Studio 2019 16.4.0 Preview 3.0 and ASP.Net Core 3.1.0-Preview2.
+Visual Studio 2019 16.4.0 Preview 4.0 and ASP.Net Core 3.1.0-Preview2.
 
 
 
