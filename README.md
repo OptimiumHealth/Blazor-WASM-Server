@@ -5,7 +5,7 @@ Blazor as part of ASP.Net Core 3.0 is shipping. As a generally available release
 
 ## Prerequisites
 
-Visual Studio 2019 16.4.0 Preview 5.0 and ASP.Net Core 3.1.0-Preview3.
+Visual Studio 2019 16.4.0 Preview 6.0 and ASP.Net Core 3.1.0-Preview3.
 
 
 
@@ -28,7 +28,7 @@ The names of the projects may seem a bit odd; Just understand that this project 
 
 
 
-This project is a Net Standard 2.0 Razor Class Library which implements the UI and backing logic. GeneralComponents contains the usual Blazor suspects of MainLayout.razor, NavMenu.razor, and the _Imports.razor files as well as a custom navigation  component. This project does not change with the server or client side execution.
+This project is a Net Standard 2.0 Razor Class Library which implements the UI and backing logic. GeneralComponents contains the usual Blazor suspects of MainLayout.razor, NavMenu.razor, and the _Imports.razor files. This project does not change with the server or client side execution.
 
 
 
@@ -44,4 +44,4 @@ This project is a Net Standard 2.0 Blazor client app defined by program.cs &amp;
 
 
 
-This project is an ASP.Net Core 3.0 server. It uses the defined constants to determine if it is going to host the Blazor project on the server or to simply act as a launch pad for the client side assets. In real life the server presents a REST api for use by the client in either mode. The key to the switch is in startup.cs where the methods Startup and Configure are customized via the defined constants.
+This project is an ASP.Net Core 3.1 server. It uses the defined constants to determine if it is going to host the Blazor project on the server or to simply act as a launch pad for the client side assets. In real life the server presents a REST api for use by the client in either mode. The key to the switch is in startup.cs where the methods Startup and Configure are customized via the defined constants.
