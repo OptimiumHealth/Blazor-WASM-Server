@@ -102,7 +102,7 @@ namespace Optimiser.Web
             */
 
             logger.Debug("UseClientSideBlazorFiles...");
-            app.UseClientSideBlazorFiles<Optimiser.Blazor.Startup>();
+            app.UseClientSideBlazorFiles<Optimiser.Blazor.Program>();
 
             logger.Debug("UseRouting...");
             app.UseRouting();
@@ -111,7 +111,7 @@ namespace Optimiser.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
-                endpoints.MapFallbackToClientSideBlazor<Optimiser.Blazor.Startup>("index_cse.html");
+                endpoints.MapFallbackToClientSideBlazor<Optimiser.Blazor.Program>("index_cse.html");
             });
 #else
             logger.Debug("UseRouting...");
