@@ -4,7 +4,7 @@
 
 using GeneralComponents;
 
-using Microsoft.AspNetCore.Blazor.Hosting;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
 using System.Threading.Tasks;
@@ -18,6 +18,8 @@ namespace Optimiser.Blazor
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
             builder.Services.AddOptions();
+
+            builder.Services.AddBaseAddressHttpClient();
 
             builder.RootComponents.Add<App>("app");
 

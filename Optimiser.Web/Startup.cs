@@ -45,13 +45,6 @@ namespace Optimiser.Web
             logger.Debug("Adding Mvc...");
             services.AddMvc();
 
-            logger.Debug("Adding ResponseCompression...");
-            services.AddResponseCompression(opts =>
-            {
-                opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
-                    new[] { "application/octet-stream" });
-            });
-
             logger.Debug("Completed Startup.ConfigureServices()");
         }
 
@@ -61,14 +54,11 @@ namespace Optimiser.Web
             logger.Debug("");
             logger.Debug("Beginning Startup.Configure()");
 
-            logger.Debug("UseResponseCompression...");
-            app.UseResponseCompression();
-
             if (env.IsDevelopment())
             {
                 logger.Debug("UseDeveloperExceptionPage...");
                 app.UseDeveloperExceptionPage();
-                app.UseBlazorDebugging();
+                app.UseWebAssemblyDebugging();
             }
             else
             {
@@ -87,22 +77,9 @@ namespace Optimiser.Web
             app.UseStaticFiles();
 
 #if ClientSideExecution
-            // Serving Client wwwroot folder
-            /*
-            logger.Debug("UseFileServer...");
-            app.UseFileServer(new FileServerOptions()
-            {
-                FileProvider = new PhysicalFileProvider(
-                     Path.Combine(
-                         $@"{Directory.GetParent(Directory.GetCurrentDirectory())}\Optimiser.Blazor",
-                         @"wwwroot")
-                ),
-                RequestPath = new PathString("")
-            });
-            */
-
             logger.Debug("UseClientSideBlazorFiles...");
-            app.UseClientSideBlazorFiles<Optimiser.Blazor.Program>();
+            app.UseBlazorFrameworkFiles();
+#endif
 
             logger.Debug("UseRouting...");
             app.UseRouting();
@@ -111,20 +88,13 @@ namespace Optimiser.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
-                endpoints.MapFallbackToClientSideBlazor<Optimiser.Blazor.Program>("index_cse.html");
-            });
+#if ClientSideExecution
+                endpoints.MapFallbackToPage("/index_cse");
 #else
-            logger.Debug("UseRouting...");
-            app.UseRouting();
-
-            logger.Debug("UseEndpoints...");
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapDefaultControllerRoute();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/index_sse");
-            });
 #endif
+            });
 
             logger.Debug("Completed Startup.Configure()");
         }

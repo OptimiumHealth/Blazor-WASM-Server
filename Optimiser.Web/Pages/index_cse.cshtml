@@ -1,4 +1,4 @@
-﻿@page "/index_sse"
+﻿@page "/index_cse"
 @namespace Optimiser.Web.Pages
 @using GeneralComponents
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -8,16 +8,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blazor-SSE</title>
+    <title>Blazor-CSE</title>
     <base href="~/" />
     <link rel="stylesheet" href="_content/GeneralComponents/css/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="_content/GeneralComponents/css/site.css" />
 </head>
 <body>
     <app>
-        <!-- SSE -->
+        <!-- CSE -->
         <app>
-            <component type="typeof(App)" render-mode="ServerPrerendered" />
+            <h1>Loading Blazor.CSE (Client side execution)...</h1>
         </app>
 
         <div id="blazor-error-ui">
@@ -31,6 +31,6 @@
             <a class="dismiss">🗙</a>
         </div>
 
-        <script src="_framework/blazor.server.js"></script>
+        <script src="_framework/blazor.webassembly.js"></script>
 </body>
 </html>
