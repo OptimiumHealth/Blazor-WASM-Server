@@ -58,12 +58,14 @@ namespace Optimiser.Web
             {
                 logger.Debug("UseDeveloperExceptionPage...");
                 app.UseDeveloperExceptionPage();
+#if ClientSideExecution
                 app.UseWebAssemblyDebugging();
+#endif
             }
             else
             {
                 logger.Debug("UseExceptionHandler...");
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
 
                 logger.Debug("UseHsts...");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
