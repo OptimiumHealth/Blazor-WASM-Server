@@ -5,18 +5,15 @@
 //              Created
 //
 
-#if ClientSideExecution
+#if BlazorWebAssembly
 #else
 using System.Net.Http;
 #endif
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
-using System.Linq;
 
 namespace Optimiser.Web
 {
@@ -28,22 +25,20 @@ namespace Optimiser.Web
         public void ConfigureServices(IServiceCollection services)
         {
             logger.Debug("");
-#if ClientSideExecution
-            logger.Debug("Beginning Startup.ConfigureServices() in CSE mode");
-#else
-            logger.Debug("Beginning Startup.ConfigureServices() in SSE mode");
 
             logger.Debug("Adding AddRazorPages...");
             services.AddRazorPages();
+
+#if BlazorWebAssembly
+            logger.Debug("Beginning Startup.ConfigureServices() in WASM mode");
+#else
+            logger.Debug("Beginning Startup.ConfigureServices() in Server mode");
 
             // Adds the Server-Side Blazor services, and those registered by the app project's startup.
             logger.Debug("Adding AddServerSideBlazor...");
             services.AddServerSideBlazor();
 
 #endif
-
-            logger.Debug("Adding Mvc...");
-            services.AddMvc();
 
             logger.Debug("Completed Startup.ConfigureServices()");
         }
@@ -58,7 +53,7 @@ namespace Optimiser.Web
             {
                 logger.Debug("UseDeveloperExceptionPage...");
                 app.UseDeveloperExceptionPage();
-#if ClientSideExecution
+#if BlazorWebAssembly
                 app.UseWebAssemblyDebugging();
 #endif
             }
@@ -78,7 +73,7 @@ namespace Optimiser.Web
             logger.Debug("UseStaticFiles...");
             app.UseStaticFiles();
 
-#if ClientSideExecution
+#if BlazorWebAssembly
             logger.Debug("UseClientSideBlazorFiles...");
             app.UseBlazorFrameworkFiles();
 #endif
@@ -89,12 +84,11 @@ namespace Optimiser.Web
             logger.Debug("UseEndpoints...");
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
-#if ClientSideExecution
-                endpoints.MapFallbackToPage("/index_cse");
+#if BlazorWebAssembly
+                endpoints.MapFallbackToPage("/index_webassembly");
 #else
                 endpoints.MapBlazorHub();
-                endpoints.MapFallbackToPage("/index_sse");
+                endpoints.MapFallbackToPage("/index_server");
 #endif
             });
 

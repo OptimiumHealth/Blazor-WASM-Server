@@ -12,7 +12,7 @@ Visual Studio 2019 16.5.0 Preview 1.0 and ASP.Net Core 3.1.0.
 ## Solution configurations
 
 
-There are four configurations in the solution. Using the Visual Studio configuration manager you can choose between debug and release and also between client side &amp; server side execution. The key differences in each configuration is the definition of either ClientSideExecution or ServerSideExecution and DEBUG or RELEASE defined constants.
+There are four configurations in the solution. Using the Visual Studio configuration manager you can choose between debug and release and also between client side &amp; server side execution. The key differences in each configuration is the definition of either BlazorWebAssembly or BlazorServer and DEBUG or RELEASE defined constants.
 
 
 
