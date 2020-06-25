@@ -4,23 +4,23 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <LangVersion>7.3</LangVersion>
     <_RazorComponentInclude>Components\**\*.cshtml</_RazorComponentInclude>
-    <Configurations>Debug_CSE;Debug_SSE;Release_CSE;Release_SSE</Configurations>
+    <Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_CSE|AnyCPU'">
-    <DefineConstants>ClientSideExecution;UseLocalData;TRACE;DEBUG;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
+    <DefineConstants>BlazorWebAssembly;UseLocalData;TRACE;DEBUG;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_SSE|AnyCPU'">
-    <DefineConstants>ServerSideExecution;UseLocalData;TRACE;DEBUG;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|AnyCPU'">
+    <DefineConstants>BlazorServer;UseLocalData;TRACE;DEBUG;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_CSE|AnyCPU'">
-    <DefineConstants>ClientSideExecution;UseLocalData;RELEASE;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_WebAssembly|AnyCPU'">
+    <DefineConstants>BlazorWebAssembly;UseLocalData;RELEASE;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_SSE|AnyCPU'">
-    <DefineConstants>ServerSideExecution;UseLocalData;RELEASE;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Server|AnyCPU'">
+    <DefineConstants>BlazorServer;UseLocalData;RELEASE;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,9 +35,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="3.2.0-preview2.20160.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.2" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="3.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.5" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.2" />
   </ItemGroup>
 
   <ItemGroup>
