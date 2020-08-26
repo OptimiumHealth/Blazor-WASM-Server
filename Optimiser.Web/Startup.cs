@@ -1,5 +1,5 @@
 ﻿//
-//  Optimiser.2019.Web.Startup
+//  Optimiser.Web.Startup
 //
 //  2019-04-18  Mark Stega
 //              Created
@@ -70,13 +70,13 @@ namespace Optimiser.Web
             logger.Debug("UseHttpsRedirection...");
             app.UseHttpsRedirection();
 
-            logger.Debug("UseStaticFiles...");
-            app.UseStaticFiles();
-
 #if BlazorWebAssembly
             logger.Debug("UseClientSideBlazorFiles...");
             app.UseBlazorFrameworkFiles();
 #endif
+
+            logger.Debug("UseStaticFiles...");
+            app.UseStaticFiles();
 
             logger.Debug("UseRouting...");
             app.UseRouting();
@@ -84,6 +84,7 @@ namespace Optimiser.Web
             logger.Debug("UseEndpoints...");
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
 #if BlazorWebAssembly
                 endpoints.MapFallbackToPage("/index_webassembly");
 #else
