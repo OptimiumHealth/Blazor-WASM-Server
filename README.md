@@ -5,7 +5,7 @@ Blazor as part of .Net is shipping as a generally available release. Blazor is s
 
 ## Prerequisites
 
-Visual Studio 2019 16.8.0 Preview 1.0 and .Net 5.0.0-Preview.8.
+Visual Studio 2019 16.8.0 Preview 2.0 and .Net 5.0.0-Preview.8.
 
 
 
