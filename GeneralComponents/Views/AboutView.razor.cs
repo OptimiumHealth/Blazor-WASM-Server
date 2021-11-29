@@ -20,7 +20,7 @@ namespace GeneralComponents.Views
             pOSArchitecture = RuntimeInformation.OSArchitecture.ToString();
             pOSDescription = RuntimeInformation.OSDescription.ToString();
             pRuntime = RuntimeInformation.FrameworkDescription.ToString();
-            pVersion = "Version 2021-11-21";
+            pVersion = "Version 2021-11-29";
         }
     }
 }
