@@ -5,7 +5,7 @@ Blazor as part of .Net is shipping as a generally available release. Blazor is s
 
 ## Prerequisites
 
-Visual Studio 2019 16.8.0 Preview 2.0 and .Net 5.0.0-Preview.8.
+Visual Studio 2022 17.2.0 (or more recent) and .Net 6.
 
 
 
@@ -28,7 +28,7 @@ The names of the projects may seem a bit odd; Just understand that this project 
 
 
 
-This project is a Net5.0 Razor Class Library which implements the UI and backing logic. GeneralComponents contains the usual Blazor suspects of MainLayout.razor, NavMenu.razor, and the _Imports.razor files. This project does not change with the server or client side execution.
+This project is a Net 6 Razor Class Library which implements the UI and backing logic. GeneralComponents contains the usual Blazor suspects of MainLayout.razor, NavMenu.razor, and the _Imports.razor files. This project does not change with the server or client side execution.
 
 
 
@@ -36,7 +36,7 @@ This project is a Net5.0 Razor Class Library which implements the UI and backing
 
 
 
-This project is a Net5.0 Blazor client app defined by program.cs &amp; startup.cs with the packages of "Microsoft.AspNetCore.Blazor" and "Microsoft.AspNetCore.Blazor.Build". It is only invoked for a client side execution, it is totally ignored for server side execution.
+This project is a Net 6 Blazor client app defined by program.cs &amp; startup.cs with the packages of "Microsoft.AspNetCore.Blazor" and "Microsoft.AspNetCore.Blazor.Build". It is only invoked for a client side execution, it is totally ignored for server side execution.
 
 
 
@@ -44,4 +44,4 @@ This project is a Net5.0 Blazor client app defined by program.cs &amp; startup.c
 
 
 
-This project is a Net5.0 server. It uses the defined constants to determine if it is going to host the Blazor project on the server or to simply act as a launch pad for the client side assets. In real life the server presents a REST api for use by the client in either mode. The key to the switch is in startup.cs where the methods Startup and Configure are customized via the defined constants.
+This project is a Net 6 server. It uses the defined constants to determine if it is going to host the Blazor project on the server or to simply act as a launch pad for the client side assets. In real life the server presents a REST api for use by the client in either mode. The key to the switch is in startup.cs where the methods Startup and Configure are customized via the defined constants.
