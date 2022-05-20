@@ -20,7 +20,7 @@ There are four configurations in the solution. Using the Visual Studio configura
 
 
 
-The names of the projects may seem a bit odd; Just understand that this project was pared down from a very large project 'in progress' and in the large project the names make sense. The solution is architected in an MVVM style. Most of what appears in the demo project is simply the view components.
+The names of the projects may seem a bit odd; Just understand that this project was pared down from a very large project 'in progress' and in the large project the names make sense. The solution is architected in an MVVM style. Most of what appears in the demo project are some of the view components.
 
 
 

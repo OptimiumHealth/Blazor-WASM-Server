@@ -2,15 +2,11 @@
 // Optimiser.Blazor.Program
 //
 
-using GeneralComponents;
+using System.Threading.Tasks;
+
+using GeneralComponents.Infrastructure.ClientServices;
 
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Optimiser.Blazor
 {
@@ -19,14 +15,12 @@ namespace Optimiser.Blazor
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-            builder.Services.AddOptions();
+            ClientServices.Inject(
+                builder.HostEnvironment.BaseAddress,
+                builder.Services);
 
             await builder.Build().RunAsync();
-
         }
     }
 }

@@ -1,54 +1,54 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <_RazorComponentInclude>Components\**\*.cshtml</_RazorComponentInclude>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<_RazorComponentInclude>Components\**\*.cshtml</_RazorComponentInclude>
 
-    <Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
-  </PropertyGroup>
+		<Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
-    <DefineConstants>BlazorWebAssembly;UseLocalData;TRACE;DEBUG;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
+		<DefineConstants>BlazorWebAssembly;UseLocalData;TRACE;DEBUG;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|AnyCPU'">
-    <DefineConstants>BlazorServer;UseLocalData;TRACE;DEBUG;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|AnyCPU'">
+		<DefineConstants>BlazorServer;UseLocalData;TRACE;DEBUG;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_WebAssembly|AnyCPU'">
-    <DefineConstants>BlazorWebAssembly;UseLocalData;RELEASE;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_WebAssembly|AnyCPU'">
+		<DefineConstants>BlazorWebAssembly;UseLocalData;RELEASE;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Server|AnyCPU'">
-    <DefineConstants>BlazorServer;UseLocalData;RELEASE;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Server|AnyCPU'">
+		<DefineConstants>BlazorServer;UseLocalData;RELEASE;OPTIMISER_NG;NETSTANDARD;NETSTANDARD2_0;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Configuration\**" />
-    <Content Remove="Configuration\**" />
-    <EmbeddedResource Remove="Configuration\**" />
-    <None Remove="Configuration\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Configuration\**" />
+		<Content Remove="Configuration\**" />
+		<EmbeddedResource Remove="Configuration\**" />
+		<None Remove="Configuration\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <UpToDateCheckInput Include="@(Content-&gt;WithMetadataValue('Extension', '.razor'))" />
-  </ItemGroup>
+	<ItemGroup>
+		<UpToDateCheckInput Include="@(Content-&gt;WithMetadataValue('Extension', '.razor'))" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.5" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="5.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.5" />
+		<PackageReference Include="NLog.Web.AspNetCore" Version="5.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Optimiser.Blazor\Optimiser.Blazor.csproj" />
-    <ProjectReference Include="..\GeneralComponents\GeneralComponents.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Optimiser.Blazor\Optimiser.Blazor.csproj" />
+		<ProjectReference Include="..\GeneralComponents\GeneralComponents.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Update="nlog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup>
+		<Content Update="nlog.config">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
 </Project>

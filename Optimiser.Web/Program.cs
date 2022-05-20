@@ -1,50 +1,114 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+
 using NLog.Web;
+
 using System;
 
-namespace Optimiser.Web
+namespace Optimiser.Web;
+
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        // NLog: setup the logger first to catch all errors
+        NLog.Logger logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+
+        try
         {
-            // NLog: setup the logger first to catch all errors
-            NLog.Logger logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            logger.Debug("______________________________________________________________________");
+            logger.Debug("Building and Starting Host in Main()");
 
-            try
+            var builder = WebApplication.CreateBuilder(args);
+
+            builder.Logging.ClearProviders();
+            builder.Logging.SetMinimumLevel(LogLevel.Trace);
+            builder.Host.UseNLog();
+
+            logger.Debug("");
+
+            logger.Debug("Adding AddRazorPages...");
+            builder.Services.AddRazorPages();
+
+#if BlazorWebAssembly
+            logger.Debug("Beginning to configure services in WASM mode");
+#else
+            logger.Debug("Beginning to configure services in Server mode");
+
+            // Adds the Server-Side Blazor services, and those registered by the app project's startup.
+            logger.Debug("Adding AddServerSideBlazor...");
+            builder.Services.AddServerSideBlazor();
+
+#endif
+            logger.Debug("Completed configure services");
+
+            var app = builder.Build();
+
+            if (app.Environment.IsDevelopment())
             {
-                logger.Debug("______________________________________________________________________");
-                logger.Debug("Building Host in Main()");
-                CreateHostBuilder(args).Build().Run();
+                logger.Debug("UseDeveloperExceptionPage...");
+                app.UseDeveloperExceptionPage();
+#if BlazorWebAssembly
+                app.UseWebAssemblyDebugging();
+#endif
             }
-            catch (Exception ex)
+            else
             {
-                //NLog: catch setup errors
-                logger.Error(ex, "Stopped program because of exception");
-                throw;
+                logger.Debug("UseExceptionHandler...");
+                app.UseExceptionHandler("/Error");
+
+                logger.Debug("UseHsts...");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
             }
-            finally
+
+            logger.Debug("UseHttpsRedirection...");
+            app.UseHttpsRedirection();
+
+#if BlazorWebAssembly
+
+            logger.Debug("UseBlazorFrameworkFiles...");
+            app.UseBlazorFrameworkFiles();
+
+#endif
+
+            logger.Debug("UseStaticFiles...");
+            app.UseStaticFiles();
+
+            logger.Debug("UseRouting...");
+            app.UseRouting();
+
+            logger.Debug("UseEndpoints...");
+            app.UseEndpoints(endpoints =>
             {
-                // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
-                logger.Debug("Shutting down NLOG");
-                NLog.LogManager.Shutdown();
-            }
+                endpoints.MapRazorPages();
+#if BlazorWebAssembly
+                endpoints.MapFallbackToPage("/index_webassembly");
+#else
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/index_server");
+#endif
+            });
+
+            logger.Debug("Completed startup, now executing app.Run()");
+            app.Run();
         }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(logging =>
-                    {
-                        logging.ClearProviders();
-                        logging.SetMinimumLevel(LogLevel.Trace);
-                    })
-                .UseNLog()  // NLog: setup NLog for Dependency injection
-                .ConfigureWebHostDefaults(webBuilder =>
-                    {
-                        webBuilder.UseStartup<Startup>();
-                    });
-
+        catch (Exception ex)
+        {
+            //NLog: catch setup errors
+            logger.Error(ex, "Stopped program because of exception");
+            throw;
+        }
+        finally
+        {
+            // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
+            logger.Debug("Shutting down NLOG");
+            NLog.LogManager.Shutdown();
+        }
     }
+
 }
