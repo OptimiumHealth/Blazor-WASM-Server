@@ -18,9 +18,6 @@ namespace Optimiser.Blazor
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-            //builder.RootComponents.Add<App>("#app");
-            //builder.RootComponents.Add<HeadOutlet>("head::after");
-
             ClientServices.Inject(
                 builder.HostEnvironment.BaseAddress,
                 builder.Services);
